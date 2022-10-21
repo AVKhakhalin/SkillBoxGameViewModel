@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_start_game_margin">16dp</dimen>
+    <dimen name="button_start_game_text_size">34sp</dimen>
+    <dimen name="logo_game_name_text_size">34sp</dimen>
+    <dimen name="logo_game_vertical_bias">0.2</dimen>
+    <dimen name="logo_game_name_vertical_bias">0.85</dimen>
+    <dimen name="logo_game_text_size">34sp</dimen>
+    <dimen name="logo_image_container_margin">16dp</dimen>
+    <dimen name="logo_image_container_corner_radius">40dp</dimen>
+    <dimen name="logo_image_container_elevation">70dp</dimen>
+</resources>
