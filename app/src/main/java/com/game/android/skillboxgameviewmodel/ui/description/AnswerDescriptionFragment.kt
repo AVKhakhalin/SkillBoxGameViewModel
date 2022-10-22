@@ -45,15 +45,12 @@ class AnswerDescriptionFragment:
                         Navigation.question(parentFragmentManager, question.questionId + 1)
                     else
                         Navigation.end(parentFragmentManager)
-//                    Toast.makeText(requireContext(), "${question.questionId + 1}", Toast.LENGTH_SHORT).show()
                 } else {
                     Navigation.end(parentFragmentManager)
-//                    Toast.makeText(requireContext(), "end", Toast.LENGTH_SHORT).show()
                 }
             }
             else -> {
                 Navigation.question(parentFragmentManager, Game.startQuestionId)
-//                Toast.makeText(requireContext(), "else", Toast.LENGTH_SHORT).show()
             }
         }
     }

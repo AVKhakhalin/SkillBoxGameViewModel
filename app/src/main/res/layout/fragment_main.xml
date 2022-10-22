@@ -74,6 +74,20 @@
         android:textAllCaps="false"
         android:textSize="@dimen/button_start_game_text_size"
         android:textColor="@color/secondary_color"
+        app:layout_constraintBottom_toTopOf="@id/button_start_undead_game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_start_undead_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/button_start_game_margin"
+        android:background="@color/primary_color"
+        android:text="@string/button_start_undead_game_text"
+        android:textAllCaps="false"
+        android:textSize="@dimen/button_start_game_text_size"
+        android:textColor="@color/secondary_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

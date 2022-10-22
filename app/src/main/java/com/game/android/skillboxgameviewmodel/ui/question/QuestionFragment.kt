@@ -2,6 +2,7 @@ package com.game.android.skillboxgameviewmodel.ui.question
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -14,6 +15,7 @@ import com.game.android.skillboxgameviewmodel.databinding.FragmentQuestionBindin
 import com.game.android.skillboxgameviewmodel.navigation.Navigation
 import com.game.android.skillboxgameviewmodel.utils.QUESTION_ID_KEY
 import com.game.android.skillboxgameviewmodel.utils.TEXT_SIZE_DOWN_BUTTON
+import com.game.android.skillboxgameviewmodel.utils.UNDEAD_MODE
 import com.google.android.material.snackbar.Snackbar
 
 class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBinding::inflate) {
@@ -21,6 +23,8 @@ class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBi
     var questionId: Int = 0
     // Кнопки выбора
     val answerButtons: MutableList<AppCompatButton> = mutableListOf()
+    // Режим деактивации кнопок с неправильным ответом
+    var isDeactivatedRegimeOn: Boolean = false
     // Инстанс данного фрагмента
     companion object {
         fun newInstance(questionId: Int): Bundle {
@@ -41,13 +45,43 @@ class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBi
             // Динамическое добавление кнопок
             repeat(question.answers.size) { answerIndex ->
                 // Создание кнопки
-                val answerButton = AppCompatButton(requireContext()).also {
-                    it.setOnClickListener {
-                        Navigation.answerDescription(
-                            fragmentManager = parentFragmentManager,
-                            questionId = question.questionId,
-                            answerId = answerIndex
-                        )
+                val answerButton = AppCompatButton(requireContext()).also { answerButton ->
+                    answerButton.setOnClickListener {
+                        if (!isDeactivatedRegimeOn) {
+                            if (Game.gameRegime != UNDEAD_MODE) {
+                                Navigation.answerDescription(
+                                    fragmentManager = parentFragmentManager,
+                                    questionId = question.questionId,
+                                    answerId = answerIndex
+                                )
+                            } else {
+                                if (question.trueAnswerIndex !=
+                                    question.answers[answerIndex].answerId) {
+                                    Navigation.question(
+                                        fragmentManager = parentFragmentManager,
+                                        questionId = if (question.questionId > 0)
+                                            question.questionId - 1 else 0
+                                    )
+                                } else {
+                                    Navigation.answerDescription(
+                                        fragmentManager = parentFragmentManager,
+                                        questionId = question.questionId,
+                                        answerId = answerIndex
+                                    )
+                                }
+                            }
+                        } else {
+                            if (question.trueAnswerIndex !=
+                                question.answers[answerIndex].answerId) {
+                                answerButton.visibility = View.INVISIBLE
+                            } else {
+                                Navigation.answerDescription(
+                                    fragmentManager = parentFragmentManager,
+                                    questionId = question.questionId,
+                                    answerId = answerIndex
+                                )
+                            }
+                        }
                     }
                 }
                 answerButtons.add(answerButton)
@@ -77,13 +111,12 @@ class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBi
                 ).show()
             }
             binding.hintButtonRight.setOnClickListener {
-                for (counter in 0 until answerButtons.size) {
-                    if (currentQuestion.trueAnswerIndex !=
-                        currentQuestion.answers[counter].answerId) {
-                        answerButtons[counter].visibility = View.INVISIBLE
-                        break
-                    }
-                }
+                isDeactivatedRegimeOn = true
+                Snackbar.make(
+                    binding.root,
+                    requireContext().getString(R.string.deactivate_on_hint),
+                    Snackbar.LENGTH_LONG,
+                ).show()
             }
         }
     }

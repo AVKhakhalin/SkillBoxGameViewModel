@@ -2,7 +2,8 @@
     <string name="app_name">SkillBoxGameViewModel</string>
     <string name="logo_game_text">Игра</string>
     <string name="logo_message_name_text">\"ДЕНЬ СУРКА\"</string>
-    <string name="button_start_game_text">Начать игру</string>
+    <string name="button_start_game_text">Играть\nобычным сурком</string>
+    <string name="button_start_undead_game_text">Играть бессмертным</string>
     <string name="question_text_tools_text">Здесь будет наш первый вопрос</string>
     <string name="exit_button_text">Пойти на собеседование</string>
     <string name="message_tools_text">Подсказка</string>
@@ -10,4 +11,5 @@
     <string name="hint_button_left_text">Подсказка 1</string>
     <string name="win_info_text">Я готов к работе\nAndroid-разработчика!</string>
     <string name="hint_button_right_text">Подсказка 2</string>
+    <string name="deactivate_on_hint">Деактивация ошибок включена</string>
 </resources>
