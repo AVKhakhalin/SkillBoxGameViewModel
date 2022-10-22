@@ -11,59 +11,53 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
-import androidx.fragment.app.Fragment
 import com.game.android.skillboxgameviewmodel.R
+import com.game.android.skillboxgameviewmodel.base.BaseFragment
 import com.game.android.skillboxgameviewmodel.core.Game
+import com.game.android.skillboxgameviewmodel.databinding.FragmentQuestionBinding
 import com.game.android.skillboxgameviewmodel.model.Question
+import com.game.android.skillboxgameviewmodel.navigation.Navigation
+import com.game.android.skillboxgameviewmodel.utils.QUESTION_ID_KEY
 
-
-class QuestionFragment: Fragment() {
+class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBinding::inflate) {
     /** Исходные данные */ //region
-    private var currentQuestion: Question? = null
-    //endregion
-
+    var questionId: Int = 0
+    // Инстанс данного фрагмента
     companion object {
-        fun newInstance() = QuestionFragment()
+        fun newInstance(questionId: Int): Bundle {
+            val bundle = Bundle()
+            bundle.putInt(QUESTION_ID_KEY, questionId)
+            return bundle
+        }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_question,
-            container, false)
-    }
+    //endregion
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currentQuestion = Game.getCurrentQuestion()
+        questionId = requireArguments().getInt(QUESTION_ID_KEY)
+        val currentQuestion = Game.getCurrentQuestion(questionId)
         currentQuestion?.let { question ->
-
-            val textView = requireView().findViewById<TextView>(R.id.question_text)
-            textView.text = question.question.toString()
-
+            val textView = binding.questionText
+            textView.text = question.question
             // Динамическое добавление кнопок
-            repeat(question.answers.size) { questionIndex ->
+            repeat(question.answers.size) { answerIndex ->
                 // Создание кнопки
                 val answerButton = AppCompatButton(requireContext()).also {
                     it.setOnClickListener {
-                        if (question.trueAnswerIndex == questionIndex)
-                            Toast.makeText(requireContext(), "Правильный ответ",
-                                Toast.LENGTH_SHORT).show()
-                        else
-                            Toast.makeText(requireContext(), "Не правильный ответ",
-                                Toast.LENGTH_SHORT).show()
+                        Navigation.answerDescription(
+                            fragmentManager = parentFragmentManager,
+                            questionId = question.questionId,
+                            answerId = answerIndex
+                        )
                     }
                 }
                 // Настройка кнопки
-                answerButton.text = question.answers[questionIndex].answer
+                answerButton.text = question.answers[answerIndex].answer
                 answerButton.setTextColor(Color.BLACK)
                 ViewCompat.setBackgroundTintList(answerButton,
                     ContextCompat.getColorStateList(requireContext(), R.color.primary_color))
                 // Добавление кнопки в макет
-                val linearLayout = requireActivity().findViewById(
-                    R.id.buttons_container)
-                    as LinearLayoutCompat
+                val linearLayout: LinearLayoutCompat = binding.buttonsContainer
                 val linearLayoutParams =
                     LinearLayoutCompat.LayoutParams(
                         LinearLayoutCompat.LayoutParams.MATCH_PARENT,

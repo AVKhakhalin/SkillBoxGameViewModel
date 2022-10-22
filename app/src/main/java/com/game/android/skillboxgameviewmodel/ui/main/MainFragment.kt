@@ -1,22 +1,21 @@
 package com.game.android.skillboxgameviewmodel.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatButton
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.game.android.skillboxgameviewmodel.base.BaseFragment
 import com.game.android.skillboxgameviewmodel.core.Game
-import com.game.android.skillboxgameviewmodel.R
-import com.game.android.skillboxgameviewmodel.ui.question.QuestionFragment
+import com.game.android.skillboxgameviewmodel.databinding.FragmentMainBinding
+import com.game.android.skillboxgameviewmodel.navigation.Navigation
 
-class MainFragment: Fragment() {
+class MainFragment: BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
     /** Исходные данные */ //region
     // Создание самой игры
     private val game: Game = Game
     // Создание ViewModel
     private lateinit var viewModel: MainViewModel
+    // Инстанс данного класса
     companion object {
         fun newInstance() = MainFragment()
     }
@@ -26,29 +25,20 @@ class MainFragment: Fragment() {
         super.onCreate(savedInstanceState)
         // Инициализация списка вопросов
         game.initialiseAndPrepareQuestions()
+//        Toast.makeText(requireContext(), "${Game.questions[1].question}", Toast.LENGTH_SHORT).show()
         // Инициализация ViewModel
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val textView = requireView().findViewById<TextView>(R.id.logo_game_name)
-//        textView.text = Game().title
-
-        val button = requireView().findViewById<AppCompatButton>(R.id.button_start_game)
+        val button = binding.buttonStartGame
         button.setOnClickListener {
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.container, QuestionFragment.newInstance())
-                .commit()
+            Navigation.question(
+                fragmentManager = parentFragmentManager,
+                questionId = Game.startQuestionId
+            )
         }
     }
 
