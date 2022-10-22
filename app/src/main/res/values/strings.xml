@@ -7,6 +7,7 @@
     <string name="exit_button_text">Пойти на собеседование</string>
     <string name="message_tools_text">Подсказка</string>
     <string name="continue_button_text">Дальше</string>
-    <string name="hint_button_text">Подсказка</string>
+    <string name="hint_button_left_text">Подсказка 1</string>
     <string name="win_info_text">Я готов к работе\nAndroid-разработчика!</string>
+    <string name="hint_button_right_text">Подсказка 2</string>
 </resources>

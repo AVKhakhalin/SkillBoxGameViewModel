@@ -2,7 +2,6 @@ package com.game.android.skillboxgameviewmodel.ui.main
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.game.android.skillboxgameviewmodel.base.BaseFragment
 import com.game.android.skillboxgameviewmodel.core.Game
@@ -25,7 +24,6 @@ class MainFragment: BaseFragment<FragmentMainBinding>(FragmentMainBinding::infla
         super.onCreate(savedInstanceState)
         // Инициализация списка вопросов
         game.initialiseAndPrepareQuestions()
-//        Toast.makeText(requireContext(), "${Game.questions[1].question}", Toast.LENGTH_SHORT).show()
         // Инициализация ViewModel
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
     }

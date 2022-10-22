@@ -21,7 +21,7 @@ object Game {
             Question(
                 questionId = 0,
                 question = "Проспал ли я собеседование на позицию Android-разработчик?",
-                hint = "Никогда не поздно найти новую позицию",
+                hint = "Никогда не поздно найти новую работу",
                 trueAnswerIndex = 1,
                 answers = listOf(
                     Answer(

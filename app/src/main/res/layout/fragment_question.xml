@@ -9,11 +9,23 @@
     tools:context=".ui.main.MainFragment">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/hint_button"
+        android:id="@+id/hint_button_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/primary_color"
-        android:text="@string/hint_button_text"
+        android:text="@string/hint_button_left_text"
+        android:textSize="@dimen/hint_button_text_size"
+        android:textAllCaps="false"
+        android:padding="@dimen/hint_button_padding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/hint_button_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        android:text="@string/hint_button_right_text"
         android:textSize="@dimen/hint_button_text_size"
         android:textAllCaps="false"
         android:padding="@dimen/hint_button_padding"
@@ -27,7 +39,7 @@
         android:layout_marginTop="@dimen/question_scroll_container_margin_top"
         android:layout_marginBottom="@dimen/question_scroll_container_margin_bottom"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@id/hint_button"
+        app:layout_constraintTop_toBottomOf="@id/hint_button_right"
         app:layout_constraintBottom_toTopOf="@id/buttons_container">
 
         <TextView

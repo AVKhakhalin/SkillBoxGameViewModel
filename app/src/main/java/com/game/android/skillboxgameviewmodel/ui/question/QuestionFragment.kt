@@ -14,10 +14,13 @@ import com.game.android.skillboxgameviewmodel.databinding.FragmentQuestionBindin
 import com.game.android.skillboxgameviewmodel.navigation.Navigation
 import com.game.android.skillboxgameviewmodel.utils.QUESTION_ID_KEY
 import com.game.android.skillboxgameviewmodel.utils.TEXT_SIZE_DOWN_BUTTON
+import com.google.android.material.snackbar.Snackbar
 
 class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBinding::inflate) {
     /** Исходные данные */ //region
     var questionId: Int = 0
+    // Кнопки выбора
+    val answerButtons: MutableList<AppCompatButton> = mutableListOf()
     // Инстанс данного фрагмента
     companion object {
         fun newInstance(questionId: Int): Bundle {
@@ -47,6 +50,7 @@ class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBi
                         )
                     }
                 }
+                answerButtons.add(answerButton)
                 // Настройка кнопки
                 answerButton.text = question.answers[answerIndex].answer
                 answerButton.textSize = TEXT_SIZE_DOWN_BUTTON
@@ -62,6 +66,24 @@ class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBi
                         LinearLayoutCompat.LayoutParams.WRAP_CONTENT
                     )
                 linearLayout.addView(answerButton, linearLayoutParams)
+            }
+
+            // Настрока подсказок
+            binding.hintButtonLeft.setOnClickListener {
+                Snackbar.make(
+                    binding.root,
+                    currentQuestion.hint,
+                    Snackbar.LENGTH_LONG,
+                ).show()
+            }
+            binding.hintButtonRight.setOnClickListener {
+                for (counter in 0 until answerButtons.size) {
+                    if (currentQuestion.trueAnswerIndex !=
+                        currentQuestion.answers[counter].answerId) {
+                        answerButtons[counter].visibility = View.INVISIBLE
+                        break
+                    }
+                }
             }
         }
     }

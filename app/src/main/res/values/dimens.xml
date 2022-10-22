@@ -26,4 +26,5 @@
     <dimen name="hint_button_padding">16dp</dimen>
     <dimen name="win_info_text_size">30sp</dimen>
     <dimen name="dimen_alpha">0.6</dimen>
+    <dimen name="exit_button_margin_bottom">60dp</dimen>
 </resources>
