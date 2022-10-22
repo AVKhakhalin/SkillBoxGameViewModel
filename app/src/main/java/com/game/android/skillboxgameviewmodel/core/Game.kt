@@ -1,14 +1,15 @@
 package com.game.android.skillboxgameviewmodel.core
 
+import android.util.Log
 import com.game.android.skillboxgameviewmodel.model.Answer
 import com.game.android.skillboxgameviewmodel.model.Question
 
 object Game {
     /** Исходные данные */ //region
+    // Индекс стартового вопроса
+    val startQuestionId: Int = 0
     // Список вопросов
-    private val questions: MutableList<Question> = mutableListOf()
-    // Счётчик заданных вопросов
-    private var currentQuestionIndex: Int = 0
+    var questions: MutableList<Question> = mutableListOf()
     //endregion
 
     // Задание вопросов и их перемешивание
@@ -16,50 +17,70 @@ object Game {
         // Добавление вопросов с ответами
         questions.add(
             Question(
+                questionId = 0,
                 question = "Сколько вам лет?",
                 hint = "Нужно указать свой примерный возраст",
                 trueAnswerIndex = 0,
                 answers = listOf(
                     Answer(
+                        answerId = 0,
                         answer = "12",
                         description = "Я ещё ребенок",
-                        indexAnswer = 0
                     ),
                     Answer(
+                        answerId = 1,
                         answer = "23",
                         description = "Я уже взрослый",
-                        indexAnswer = 1
+                    ),
+                    Answer(
+                        answerId = 1,
+                        answer = "43",
+                        description = "Я уже очень взрослый",
+                    ),
+                    Answer(
+                        answerId = 1,
+                        answer = "53",
+                        description = "Я уже старый",
+                    ),
+                    Answer(
+                        answerId = 1,
+                        answer = "63",
+                        description = "Я уже супер старый",
                     )
                 ),
             )
         )
         questions.add(
             Question(
+                questionId = 1,
                 question = "Где вы живёте?",
                 hint = "Нужно указать название своего города",
-                trueAnswerIndex = 1,
+                trueAnswerIndex = 0,
                 answers = listOf(
                     Answer(
+                        answerId = 0,
                         answer = "г. Москва",
                         description = "Большой город",
-                        indexAnswer = 0
                     ),
                     Answer(
+                        answerId = 1,
                         answer = "г. Коломна",
                         description = "Красивый город",
-                        indexAnswer = 1
                     )
                 ),
             )
         )
-        // Случайное перемешивание вопросов
-        questions.shuffle()
+        // Случайное перемешивание ответов
+        questions.forEachIndexed { index, questions ->
+            val newQuestions = questions.answers.shuffled()
+            questions.answers = newQuestions
+        }
     }
 
     // Получение текущего вопроса
-    fun getCurrentQuestion(): Question? {
-        return if (currentQuestionIndex + 1 <= questions.size - 1)
-            questions[currentQuestionIndex++]
+    fun getCurrentQuestion(questionId: Int): Question? {
+        return if (questionId <= questions.size - 1)
+            questions[questionId]
         else
             null
     }

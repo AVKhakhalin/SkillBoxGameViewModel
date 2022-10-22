@@ -1,9 +1,10 @@
 package com.game.android.skillboxgameviewmodel.model
 
 data class Question(
+    val questionId: Int,
     val question: String,
     val hint: String,
     val trueAnswerIndex: Int,
-    val answers: List<Answer>
+    var answers: List<Answer>
 )
 
