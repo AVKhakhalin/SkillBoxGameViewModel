@@ -12,7 +12,7 @@
         android:id="@+id/exit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="@dimen/exit_button_margin_bottom"
         android:text="@string/exit_button_text"
         android:textSize="@dimen/exit_button_text_size"
         android:textColor="@color/secondary_color"

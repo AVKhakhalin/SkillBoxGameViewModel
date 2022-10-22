@@ -4,6 +4,7 @@ import android.util.Log
 import com.game.android.skillboxgameviewmodel.model.Answer
 import com.game.android.skillboxgameviewmodel.model.Question
 import com.game.android.skillboxgameviewmodel.utils.FALLING_ANSWER_TEXT
+import com.game.android.skillboxgameviewmodel.utils.NORMAL_MODE
 import com.game.android.skillboxgameviewmodel.utils.SUCCESS_ANSWER_TEXT
 
 object Game {
@@ -12,6 +13,8 @@ object Game {
     val startQuestionId: Int = 0
     // Список вопросов
     var questions: MutableList<Question> = mutableListOf()
+    // Режим игры
+    var gameRegime: Int = NORMAL_MODE
     //endregion
 
     // Задание вопросов и их перемешивание
@@ -21,7 +24,7 @@ object Game {
             Question(
                 questionId = 0,
                 question = "Проспал ли я собеседование на позицию Android-разработчик?",
-                hint = "Никогда не поздно найти новую позицию",
+                hint = "Никогда не поздно найти новую работу",
                 trueAnswerIndex = 1,
                 answers = listOf(
                     Answer(
