@@ -5,30 +5,49 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment"
-    android:padding="16dp">
+    android:padding="@dimen/main_padding"
+    tools:context=".ui.main.MainFragment">
 
-    <TextView
-        android:id="@+id/question_text"
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/hint_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="34sp"
-        android:textColor="@color/secondary_color"
-        tools:text="Здесь будет наш первый вопрос"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/primary_color"
+        android:text="@string/hint_button_text"
+        android:textSize="@dimen/hint_button_text_size"
+        android:textAllCaps="false"
+        android:padding="@dimen/hint_button_padding"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/question_scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/question_scroll_container_height"
+        android:layout_marginTop="@dimen/question_scroll_container_margin_top"
+        android:layout_marginBottom="@dimen/question_scroll_container_margin_bottom"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/hint_button"
+        app:layout_constraintBottom_toTopOf="@id/buttons_container">
+
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/secondary_color"
+            android:textSize="@dimen/question_text_text_size"
+            tools:text="@string/question_text_tools_text" />
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/buttons_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
