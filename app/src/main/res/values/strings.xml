@@ -3,4 +3,10 @@
     <string name="logo_game_text">Игра</string>
     <string name="logo_message_name_text">\"ДЕНЬ СУРКА\"</string>
     <string name="button_start_game_text">Начать игру</string>
+    <string name="question_text_tools_text">Здесь будет наш первый вопрос</string>
+    <string name="exit_button_text">Пойти на собеседование</string>
+    <string name="message_tools_text">Подсказка</string>
+    <string name="continue_button_text">Дальше</string>
+    <string name="hint_button_text">Подсказка</string>
+    <string name="win_info_text">Я готов к работе\nAndroid-разработчика!</string>
 </resources>

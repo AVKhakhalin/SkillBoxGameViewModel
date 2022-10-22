@@ -2,11 +2,7 @@ package com.game.android.skillboxgameviewmodel.ui.question
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
@@ -15,9 +11,9 @@ import com.game.android.skillboxgameviewmodel.R
 import com.game.android.skillboxgameviewmodel.base.BaseFragment
 import com.game.android.skillboxgameviewmodel.core.Game
 import com.game.android.skillboxgameviewmodel.databinding.FragmentQuestionBinding
-import com.game.android.skillboxgameviewmodel.model.Question
 import com.game.android.skillboxgameviewmodel.navigation.Navigation
 import com.game.android.skillboxgameviewmodel.utils.QUESTION_ID_KEY
+import com.game.android.skillboxgameviewmodel.utils.TEXT_SIZE_DOWN_BUTTON
 
 class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBinding::inflate) {
     /** Исходные данные */ //region
@@ -53,9 +49,11 @@ class QuestionFragment: BaseFragment<FragmentQuestionBinding>(FragmentQuestionBi
                 }
                 // Настройка кнопки
                 answerButton.text = question.answers[answerIndex].answer
+                answerButton.textSize = TEXT_SIZE_DOWN_BUTTON
                 answerButton.setTextColor(Color.BLACK)
                 ViewCompat.setBackgroundTintList(answerButton,
                     ContextCompat.getColorStateList(requireContext(), R.color.primary_color))
+                answerButton.isAllCaps = false
                 // Добавление кнопки в макет
                 val linearLayout: LinearLayoutCompat = binding.buttonsContainer
                 val linearLayoutParams =

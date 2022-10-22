@@ -9,4 +9,21 @@
     <dimen name="logo_image_container_margin">16dp</dimen>
     <dimen name="logo_image_container_corner_radius">40dp</dimen>
     <dimen name="logo_image_container_elevation">70dp</dimen>
+    <dimen name="question_scroll_container_height">0dp</dimen>
+    <dimen name="question_scroll_container_margin_top">16dp</dimen>
+    <dimen name="question_scroll_container_margin_bottom">16dp</dimen>
+    <dimen name="question_text_text_size">30sp</dimen>
+    <dimen name="logo_image_margin">16dp</dimen>
+    <dimen name="exit_container_padding">16dp</dimen>
+    <dimen name="exit_button_text_size">20sp</dimen>
+    <dimen name="message_text_size">30sp</dimen>
+    <dimen name="message_scroll_container_height">0dp</dimen>
+    <dimen name="message_scroll_container_margin_bottom">16dp</dimen>
+    <dimen name="main_padding">16dp</dimen>
+    <dimen name="continue_button_width">0dp</dimen>
+    <dimen name="continue_button_text_size">20sp</dimen>
+    <dimen name="hint_button_text_size">20sp</dimen>
+    <dimen name="hint_button_padding">16dp</dimen>
+    <dimen name="win_info_text_size">30sp</dimen>
+    <dimen name="dimen_alpha">0.6</dimen>
 </resources>
