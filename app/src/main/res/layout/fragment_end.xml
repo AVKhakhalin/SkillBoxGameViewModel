@@ -8,6 +8,34 @@
     tools:context=".ui.main.MainFragment"
     android:padding="@dimen/exit_container_padding">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/imageView_height"
+        android:alpha="@dimen/dimen_alpha"
+        android:scaleType="fitCenter"
+        android:src="@drawable/groundhog"
+        android:layout_marginBottom="@dimen/imageView_margin_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/exit_button"/>
+
+    <TextView
+        android:id="@+id/win_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/win_info_text"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/win_info_text_size"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="@dimen/win_info_vertical_bias"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/exit_button"
         android:layout_width="match_parent"
@@ -19,30 +47,6 @@
         android:textAllCaps="false"
         android:background="@color/primary_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="@dimen/dimen_alpha"
-        android:scaleType="fitCenter"
-        android:src="@drawable/groundhog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/win_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/win_info_text"
-        android:textColor="@color/primary_color"
-        android:textSize="@dimen/win_info_text_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
