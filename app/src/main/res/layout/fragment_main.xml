@@ -16,7 +16,8 @@
         app:cardCornerRadius="@dimen/logo_image_container_corner_radius"
         app:cardElevation="@dimen/logo_image_container_elevation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_start_game">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
