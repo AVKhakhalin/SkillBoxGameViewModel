@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/logo_image_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/logo_image_container_height"
         android:layout_margin="@dimen/logo_image_container_margin"
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/logo_image_container_corner_radius"
@@ -41,7 +41,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/logo_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/logo_image_margin"
                 android:src="@drawable/groundhog"
                 app:layout_constraintStart_toStartOf="parent"
